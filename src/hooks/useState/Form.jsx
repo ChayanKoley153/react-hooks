@@ -1,72 +1,94 @@
-import { useState } from 'react'
-import './Form.css'
+import { useState } from "react";
+import "./Form.css";
 
 const Form = () => {
 
   const [formData, setFormData] = useState({
-    name: '',
-    address: '',
-    phone: ''
+    name: "",
+    address: "",
+    phone: "",
+    id: ""
   });
 
-  const [id, setId] = useState()
-
-  const newUsers = {
-    ...formData,
-    id: Date.now()
-  };
-
-  console.log(newUsers);
-
-
-
-  let initialValue = [];
+  // edit id
+  const [editId, setEditId] = useState(null);
 
   const users = localStorage.getItem("userlist");
-  initialValue = users ? JSON.parse(users) : [];
-
+  const initialValue = users ? JSON.parse(users) : [];
   const [lists, setLists] = useState(initialValue);
 
 
+  // save to localstorage
   const saveData = (data) => {
     localStorage.setItem("userlist", JSON.stringify(data));
-  }
+  };
 
 
+ 
   const handleChange = (e) => {
     setFormData({
-      ...newUsers,
+      ...formData,
       [e.target.name]: e.target.value
     });
   };
 
 
+
+  // add/update user
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const users = [...lists, formData];
+    if (editId) {
+      const updateList = lists.map((item) =>
+        item.id === editId ? { ...formData, id: editId } : item
+      );
 
-    setLists(users);
-    saveData(users);
+      setLists(updateList);
+      saveData(updateList);
+      setEditId(null);
 
-    console.log(users);
+    } else {
+
+      const newUser = {
+        ...formData,
+        id: Date.now()
+      };
+
+      const users = [...lists, newUser];
+
+      setLists(users);
+      saveData(users);
+    }
 
     setFormData({
-      name: '',
-      address: '',
-      phone: ''
+      name: "",
+      address: "",
+      phone: "",
+      id: ""
     });
   };
 
 
-  const handleDelete = (e) => {
+  // delete user
+  const handleDelete = (id) => {
+    const updateList = lists.filter((item) => item.id !== id);
 
-    e.preventDefault();
+    setLists(updateList);
+    saveData(updateList);
+  };
 
 
-  }
+  // update user
+  const handleUpdate = (id) => {
+    const editUser = lists.find((item) => item.id === id); 
 
-  console.log(id,"Id")
+    // console.log(editUser);
+    
+    setFormData(editUser);
+    setEditId(id);
+  };
+
+
 
   return (
     <>
@@ -100,28 +122,36 @@ const Form = () => {
           onChange={handleChange}
         /><br />
 
-        <button type="submit">Submit</button>
+        <button type="submit">
+          {editId ? "Update" : "Submit"}
+        </button>
       </form>
 
-
       <div className="card">
-        <h3>User Lists:</h3>
+        <h3>Users Lists:</h3>
+
         <ul>
-          {Array.isArray(lists) && lists?.map((user, index) => (
-            <li key={index}>
+          {lists.map((user) => (
+            <li key={user.id}>
               <div>
                 id: {user.id} <br />
                 Name: {user.name} <br />
                 Address: {user.address} <br />
-                Phone: {user.phone}
-                <button id={user.id} onClick={() => { handleDelete,setId(user.id)}}>Delete</button>
+                Phone: {user.phone} <br />
+                <button onClick={() => handleDelete(user.id)}>
+                  Delete
+                </button>
+                <button onClick={() => handleUpdate(user.id)}>
+                  Update
+                </button>
               </div>
             </li>
           ))}
         </ul>
+
       </div>
     </>
-  )
-}
+  );
+};
 
 export default Form;
