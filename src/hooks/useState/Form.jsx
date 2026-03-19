@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { CiSearch } from "react-icons/ci";
 import "./Form.css";
 
 const Form = () => {
@@ -13,8 +14,13 @@ const Form = () => {
   // edit id
   const [editId, setEditId] = useState(null);
 
+  // search input
+  const [input, setInput] = useState("");
+
+
+  let initialValue = [];
   const users = localStorage.getItem("userlist");
-  const initialValue = users ? JSON.parse(users) : [];
+  initialValue = users ? JSON.parse(users) : [];
   const [lists, setLists] = useState(initialValue);
 
 
@@ -24,12 +30,8 @@ const Form = () => {
   };
 
 
- 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
 
@@ -80,18 +82,38 @@ const Form = () => {
 
   // update user
   const handleUpdate = (id) => {
-    const editUser = lists.find((item) => item.id === id); 
+    const editUser = lists.find((item) => item.id === id);
 
-    // console.log(editUser);
-    
+    // console.log(editUser); 
     setFormData(editUser);
     setEditId(id);
   };
 
 
 
+  // search input
+  const handleInput = (value) => {
+    setInput(value);
+    // console.log(input);
+  }
+
+  // search filter
+  const filteredUsers = lists.filter((user) =>
+    user.name.toLowerCase().includes(input.toLowerCase())
+  );
+
+  console.log(filteredUsers);
+
+
+
   return (
     <>
+      <div className="search-box">
+        <CiSearch className="search-icon" />
+        <input type="text" placeholder="search with name" onChange={(e) => handleInput(e.target.value)}
+        />
+      </div>
+
       <form onSubmit={handleSubmit}>
         <h2>User Form:</h2>
 
@@ -129,9 +151,8 @@ const Form = () => {
 
       <div className="card">
         <h3>Users Lists:</h3>
-
         <ul>
-          {lists.map((user) => (
+          {filteredUsers.map((user) => (
             <li key={user.id}>
               <div>
                 id: {user.id} <br />
@@ -148,7 +169,6 @@ const Form = () => {
             </li>
           ))}
         </ul>
-
       </div>
     </>
   );
