@@ -5,6 +5,8 @@ import './App.css'
 import Count from './hooks/useState/count'
 import Colorpicker from './hooks/useState/colorpicker'
 import Form from './hooks/useState/Form'
+import Accordion from './hooks/useState/Accordion'
+import Dropdown from './hooks/useState/Dropdown'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,7 +15,9 @@ function App() {
     <>
       {/* <Count /> */}
       {/* <Colorpicker/> */}
-      <Form/>
+      {/* <Form/> */}
+      {/* <Accordion/> */}
+      <Dropdown/>
     </>
   )
 }

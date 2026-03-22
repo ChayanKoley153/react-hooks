@@ -102,8 +102,6 @@ const Form = () => {
     user.name.toLowerCase().includes(input.toLowerCase())
   );
 
-  console.log(filteredUsers);
-
 
 
   return (
@@ -152,7 +150,7 @@ const Form = () => {
       <div className="card">
         <h3>Users Lists:</h3>
         <ul>
-          {filteredUsers.map((user) => (
+          {filteredUsers?.map((user) => (
             <li key={user.id}>
               <div>
                 id: {user.id} <br />
