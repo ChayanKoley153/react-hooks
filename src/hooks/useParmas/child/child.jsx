@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from "axios";
 
 
-export default function Child() { 
+export default function Child() {
   const [data, setData] = useState([]);
   const { id } = useParams();
 
@@ -24,6 +24,7 @@ export default function Child() {
   return (
     <>
       <h2>{data.title}</h2>
+      <p>{data.description}</p>
     </>
   );
 }

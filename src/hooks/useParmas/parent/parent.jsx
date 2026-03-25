@@ -16,7 +16,12 @@ export default function Parent() {
     };
 
     useEffect(() => {
+        const controller = new AbortController();
         fetchdata();
+
+        return () => {
+            controller.abort();
+        }
     }, []);
 
     return (

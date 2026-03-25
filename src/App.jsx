@@ -9,7 +9,8 @@ import Accordion from './hooks/useState/Accordion'
 import Dropdown from './hooks/useState/Dropdown'
 import Parent from './hooks/useParmas/parent/Parent'
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
-import Child from './hooks/useParmas/child/Child'
+import Child from './hooks/useParmas/child/child'
+import { Search } from './hooks/useParmas/Search'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -22,12 +23,15 @@ function App() {
       {/* <Accordion/> */}
       {/* <Dropdown/> */}
 
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Routes>
           <Route path="/" element={<Parent />} />
           <Route path="/child/:id" element={<Child/>} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
+
+
+      <Search/>
     </>
   )
 }
