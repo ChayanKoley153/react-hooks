@@ -10,10 +10,13 @@ import Dropdown from './hooks/useState/Dropdown'
 import Parent from './hooks/useParmas/parent/Parent'
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import Child from './hooks/useParmas/child/child'
-import { Search } from './hooks/useParmas/Search'
+import Search from './hooks/useEffect/Search'
+import Home from './hooks/useEffect/Blog/home'
+import Blog from './hooks/useEffect/Blog/blog'
+import Author from './hooks/useEffect/Blog/author'
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
@@ -22,16 +25,18 @@ function App() {
       {/* <Form/> */}
       {/* <Accordion/> */}
       {/* <Dropdown/> */}
+      {/* <Search /> */}
 
-      {/* <BrowserRouter>
+
+
+      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Parent />} />
-          <Route path="/child/:id" element={<Child/>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/blog/:id" element={<Blog />} />
+          <Route path='/author/:authorId' element={<Author />} />
         </Routes>
-      </BrowserRouter> */}
+      </BrowserRouter>
 
-
-      <Search/>
     </>
   )
 }
