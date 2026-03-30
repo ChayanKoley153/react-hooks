@@ -20,7 +20,12 @@ export default function Author() {
     };
 
     useEffect(() => {
+        const controller = new AbortController();
         fetchdata();
+
+        return () => {
+            controller.abort();
+        }
     }, [authorId]);
 
     if (loading) {
@@ -37,8 +42,6 @@ export default function Author() {
             {data.map((item) => (
                 <div
                     key={item.id}
-                    onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-5px)"}
-                    onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0px)"}
                     style={{
                         background: "#fff",
                         padding: "20px",
@@ -48,8 +51,9 @@ export default function Author() {
                         transition: "0.2s"
                     }}
                 >
+
                     <h3 style={{ marginBottom: "10px", color: "#222" }}>
-                        {item.title}
+                        {item.id}:  {item.title}
                     </h3>
 
                     <p style={{ color: "#555", lineHeight: "1.6" }}>

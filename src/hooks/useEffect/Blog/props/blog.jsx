@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import axiosInstance from '../../../../../api/axios';
+import { endPoints } from '../../../../../api/endPoints';
 
 export default function Blog() {
     const [data, setData] = useState(null);
@@ -10,8 +12,9 @@ export default function Blog() {
 
     const fetchdata = async () => {
         try {
-            let res = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
+            let res = await axiosInstance.get(`${endPoints.product.details}/${id}`);
             setData(res.data);
+            return data
         } catch (err) {
             console.log(err);
         } finally {
@@ -20,7 +23,12 @@ export default function Blog() {
     };
 
     useEffect(() => {
+        const controller = new AbortController();
         fetchdata();
+
+        return () => {
+            controller.abort();
+        }
     }, [id]);
 
     if (loading) {

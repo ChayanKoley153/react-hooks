@@ -11,9 +11,10 @@ import Parent from './hooks/useParmas/parent/Parent'
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import Child from './hooks/useParmas/child/child'
 import Search from './hooks/useEffect/Search'
-import Home from './hooks/useEffect/Blog/home'
-import Blog from './hooks/useEffect/Blog/blog'
+
 import Author from './hooks/useEffect/Blog/author'
+import Home from './hooks/useEffect/Blog/props/home'
+import Blog from './hooks/useEffect/Blog/props/blog'
 
 function App() {
 
@@ -32,7 +33,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/blog/:id" element={<Blog />} />
+          <Route path="/blog/:id" element={<Blog/>} />
           <Route path='/author/:authorId' element={<Author />} />
         </Routes>
       </BrowserRouter>
