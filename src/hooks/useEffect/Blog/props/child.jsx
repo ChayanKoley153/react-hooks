@@ -21,7 +21,7 @@ export default function Child({ item }) {
             </h3>
 
             <p style={{ fontSize: "12px", color: "gray", margin: 0 }}>
-                User ID: {item.userId}
+                User Id: {item.userId}
             </p>
 
             <p>

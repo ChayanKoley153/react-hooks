@@ -10,6 +10,7 @@ export default function Home() {
     const [output, setOutput] = useState([]);
     const [sort, setSort] = useState("title");
 
+
     const fetchdata = async () => {
         try {
             let res = await axiosInstance.get(`${endPoints.product.list}?_sort=${sort}&_order=asc`);
@@ -19,6 +20,7 @@ export default function Home() {
         }
     };
 
+    
     useEffect(() => {
         const controller = new AbortController();
         fetchdata();

@@ -22,6 +22,7 @@ export default function Blog() {
         }
     };
 
+    
     useEffect(() => {
         const controller = new AbortController();
         fetchdata();
@@ -30,6 +31,8 @@ export default function Blog() {
             controller.abort();
         }
     }, [id]);
+
+
 
     if (loading) {
         return <h2 style={{ textAlign: "center", marginTop: "50px" }}>Loading...</h2>;

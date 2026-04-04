@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import axiosInstance from '../../../../../api/axios';
+import { endPoints } from '../../../../../api/endPoints';
 
 export default function Author() {
     const [data, setData] = useState([]);
@@ -10,7 +12,7 @@ export default function Author() {
 
     const fetchdata = async () => {
         try {
-            let res = await axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${authorId}`);
+            let res = await axiosInstance.get(`${endPoints.product.authors}?userId=${authorId}`);
             setData(res.data);
         } catch (err) {
             console.log(err);
@@ -19,6 +21,7 @@ export default function Author() {
         }
     };
 
+    
     useEffect(() => {
         const controller = new AbortController();
         fetchdata();
@@ -27,6 +30,7 @@ export default function Author() {
             controller.abort();
         }
     }, [authorId]);
+
 
     if (loading) {
         return <h2 style={{ textAlign: "center", marginTop: "50px" }}>Loading...</h2>;

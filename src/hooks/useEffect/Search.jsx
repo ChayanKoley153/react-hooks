@@ -12,7 +12,7 @@ const Search = () => {
       setOutput(res.data.products);
     };
     fetchData();
-  }, []);
+  }, [input]);
 
 
   useEffect(() => {

@@ -11,14 +11,18 @@ import Parent from './hooks/useParmas/parent/Parent'
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import Child from './hooks/useParmas/child/child'
 import Search from './hooks/useEffect/Search'
-
-import Author from './hooks/useEffect/Blog/author'
 import Home from './hooks/useEffect/Blog/props/home'
 import Blog from './hooks/useEffect/Blog/props/blog'
+import Author from './hooks/useEffect/Blog/props/author'
+import ParentPure from './hooks/reactMemo/pureCom'
+import Memo from './hooks/useCallback/Memo'
+import Todos from './hooks/useCallback/todo/todo'
+import CounterCusTom from './hooks/customHooks/counter/countercom'
+import Users from './hooks/customHooks/apiCall/apiCom'
+
+
 
 function App() {
-
-
   return (
     <>
       {/* <Count /> */}
@@ -27,16 +31,22 @@ function App() {
       {/* <Accordion/> */}
       {/* <Dropdown/> */}
       {/* <Search /> */}
+      {/* <ParentPure/> */}
+      {/* <Memo/> */}
+      {/* <Todos /> */}
+      {/* <CounterCusTom /> */}
+      <Users/>
 
-
-
-      <BrowserRouter>
+      
+      
+      {/* 
+     <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/blog/:id" element={<Blog/>} />
           <Route path='/author/:authorId' element={<Author />} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter>   */}
 
     </>
   )
