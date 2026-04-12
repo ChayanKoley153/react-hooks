@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axiosInstance from '../../../../../api/axios';
-import { endPoints } from '../../../../../api/endPoints';
+import axiosInstance from '../../../../api/axios';
+import { endPoints } from '../../../../api/endPoints';
 
 export default function Author() {
     const [data, setData] = useState([]);

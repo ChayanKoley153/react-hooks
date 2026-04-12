@@ -11,4 +11,4 @@ const PureChild = ({ name, age }) => {
     )
 }
 
-export default (PureChild)
+export default memo(PureChild)

@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Child from './child';
-import axiosInstance from '../../../../../api/axios';
-import { endPoints } from '../../../../../api/endPoints';
+import axiosInstance from '../../../../api/axios';
+import { endPoints } from '../../../../api/endPoints';
+
 
 export default function Home() {
     const [output, setOutput] = useState([]);
