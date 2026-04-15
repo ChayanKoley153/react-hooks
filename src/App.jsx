@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
 import Count from './hooks/useState/count'
 import Colorpicker from './hooks/useState/colorpicker'
 import Form from './hooks/useState/Form'
@@ -21,6 +20,10 @@ import CounterCusTom from './hooks/customHooks/counter/countercom'
 import Users from './hooks/customHooks/apiCall/apiCom'
 import Validation1 from './hooks/useMemo/validation'
 import NotFound from './hooks/useEffect/Blog/notfound'
+import FormValidation from './hooks/validation/form'
+import Parent1 from './hooks/stateLifting/parent'
+import Home1 from './hooks/stateLifting/cart/home'
+import NewValidation from './hooks/validation/newForm'
 
 
 
@@ -38,9 +41,12 @@ function App() {
       {/* <Todos /> */}
       {/* <CounterCusTom /> */}
       {/* <Users/> */}
-      <Validation1/>
+      {/* <Validation1 /> */}
+      {/* <Parent1/> */}
+      {/* <Home1/> */}
 
-
+      {/* <FormValidation/> */}
+      <NewValidation/>
 
       {/* <BrowserRouter>
         <Routes>
