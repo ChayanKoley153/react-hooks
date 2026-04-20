@@ -44,9 +44,9 @@ function App() {
       {/* <Validation1 /> */}
       {/* <Parent1/> */}
       {/* <Home1/> */}
-
       {/* <FormValidation/> */}
-      <NewValidation/>
+      {/* <NewValidation/> */}
+      
 
       {/* <BrowserRouter>
         <Routes>

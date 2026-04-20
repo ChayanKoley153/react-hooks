@@ -11,7 +11,7 @@ export default function NewValidation() {
     });
 
     const [image, setImage] = useState(null);
-    const [error, setError] = useState({}); 
+    const [error, setError] = useState({});
 
     const validate = () => {
         let error = {};
@@ -49,49 +49,71 @@ export default function NewValidation() {
         const name = e.target.name;
         const value = e.target.value;
 
-        const updatedUser = {
-            ...user,
-            [name]: value
-        };
-
-        setUser(updatedUser);
-
-        let newError = { ...error };
-
         if (name === "first_name") {
-            newError.first_name = value ? "" : "First Name is required";
-        }
-
-        if (name === "last_name") {
-            newError.last_name = value ? "" : "Last Name is required";
-        }
-
-        if (name === "password") {
-            newError.password = value ? "" : "Password is required";
-
-            // ✅ check confirm password also
-            if (updatedUser.confirm_password && value !== updatedUser.confirm_password) {
-                newError.confirm_password = "Password do not match";
+            if (value.length === 0) {
+                setError({ ...error, first_name: "first name is required" })
+                setUser({ ...user, first_name: "" })
             } else {
-                newError.confirm_password = "";
+                setError({ ...error, first_name: "" })
+                setUser({ ...user, first_name: value })
             }
         }
 
-        if (name === "confirm_password") {
-            if (!value) {
-                newError.confirm_password = "Confirm Password is required";
-            } else if (value !== updatedUser.password) {
-                newError.confirm_password = "Password do not match";
+        if (name === "last_name") {
+            if (value.length === 0) {
+                setError({ ...error, last_name: "last name is required" })
+                setUser({ ...user, last_name: "" })
             } else {
-                newError.confirm_password = "";
+                setError({ ...error, last_name: "" })
+                setUser({ ...user, last_name: value })
+            }
+        }
+
+        if (name === "password") {
+            if (value.length === 0) {
+                setError({ ...error, password: "password is required" })
+                setUser({ ...user, password: "" })
+            } else {
+                setError({ ...error, password: "" })
+                setUser({ ...user, password: value })
+            }
+
+        }
+
+        if (name === "confirm_password") {
+            if (value.length === 0) {
+                setError({ ...error, confirm_password: "confirm password is required" })
+                setUser({ ...user, confirm_password: "" })
+            } else {
+                setUser({ ...user, confirm_password: value })
+
+                if (value !== user.password) {
+                    setError({ ...error, confirm_password: "passwords do not match" });
+                } else {
+                    setError({ ...error, confirm_password: "" });
+                }
             }
         }
 
         if (name === "address") {
-            newError.address = value ? "" : "Address is required";
+            if (value.length === 0) {
+                setError({ ...error, address: "address is required" })
+                setUser({ ...user, address: "" })
+            } else {
+                setError({ ...error, address: "" })
+                setUser({ ...user, address: value })
+            }
         }
+    };
 
-        setError(newError); // ✅ single update
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setImage(file);
+
+        setError(prev => ({
+            ...prev,
+            image: file ? "" : "Image is required"
+        }));
     };
 
     const handleSubmit = (e) => {
@@ -111,15 +133,6 @@ export default function NewValidation() {
         console.log("Submitted Data:", formData);
     };
 
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        setImage(file);
-
-        setError(prev => ({
-            ...prev,
-            image: file ? "" : "Image is required"
-        }));
-    };
 
     return (
         <form onSubmit={handleSubmit}>

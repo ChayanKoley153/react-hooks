@@ -24,6 +24,7 @@ const usePostApi = (url) => {
             setData(response);
             return response;
         } catch (err) {
+            console.log("API ERROR:", err.response);
             setError(err.message);
             return null;
         } finally {
