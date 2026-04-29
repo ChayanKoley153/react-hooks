@@ -24,6 +24,9 @@ import FormValidation from './hooks/validation/form'
 import Parent1 from './hooks/stateLifting/parent'
 import Home1 from './hooks/stateLifting/cart/home'
 import NewValidation from './hooks/validation/newForm'
+import Updatestate from './practice/updatestate'
+import ColorReducer from './hooks/useReducer/useReducerColor'
+import IncrementReducer from './hooks/useReducer/useIncrement'
 
 
 
@@ -46,6 +49,10 @@ function App() {
       {/* <Home1/> */}
       {/* <FormValidation/> */}
       {/* <NewValidation/> */}
+      {/* <Input/> */}
+      {/* <Updatestate/> */}
+      {/* <ColorReducer/> */}
+      {/* <IncrementReducer/> */}
       
 
       {/* <BrowserRouter>
