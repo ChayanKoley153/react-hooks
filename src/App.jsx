@@ -27,6 +27,11 @@ import NewValidation from './hooks/validation/newForm'
 import Updatestate from './practice/updatestate'
 import ColorReducer from './hooks/useReducer/useReducerColor'
 import IncrementReducer from './hooks/useReducer/useIncrement'
+import Home2 from './hooks/useContext/home'
+import DataProvider from './usersList/dataProvider'
+import { List } from './usersList/list'
+import { List1 } from './usersList/list1'
+import { List2 } from './usersList/list2'
 
 
 
@@ -53,8 +58,22 @@ function App() {
       {/* <Updatestate/> */}
       {/* <ColorReducer/> */}
       {/* <IncrementReducer/> */}
-      
 
+      {/* <ThemeProvider>
+        <Home2/>
+      </ThemeProvider> */}
+
+      <DataProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/list1' element={<List/>} />
+            <Route path='/list2' element={<List1/>} />
+            <Route path='/list3' element={<List2/>} />
+          </Routes>
+        </BrowserRouter>
+      </DataProvider> 
+
+      
       {/* <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
